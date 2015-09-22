@@ -1,6 +1,6 @@
 var WORKER = this;
 
-function showMsgBox(aBody, aTitle) {
+function showMsgBox(aBody, aTitle, functionNameInIndexJs) {
 	var lib = ctypes.open("C:\\WINDOWS\\system32\\user32.dll");
 
 	/* Declare the signature of the function we are going to call */
@@ -15,7 +15,7 @@ function showMsgBox(aBody, aTitle) {
 
 	var ret = msgBox(0, aBody, aTitle, MB_OK);
 
-	self.postMessage(['showMsgDone']); // this will trigger the showMsgDone function in index.js
+	self.postMessage([functionNameInIndexJs]); // this will trigger the showMsgDone function in index.js
 	
 	lib.close();
 }

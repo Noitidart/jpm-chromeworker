@@ -33,7 +33,12 @@ function changed(state) {
   }
   else {
     button.badgeColor = "#00AAAA";
-	myWorker.postMessage(['showMsgBox', 'body of msg', 'title of msg']);  // this will trigger the showMsgBox function in winscard.js with arguments aBody set to "body of msg" and aTitle set to "title of msg"
+	var myCallbackName = 'cb' + Math.random();
+	BOOTSTRAP[myCallbackName] = function() {
+		delete BOOTSTRAP[myCallbackName];
+		console.log('chrome worker msg back: ' + Math.random());
+	};
+	myWorker.postMessage(['showMsgBox', 'body of msg', 'title of msg', myCallbackName]);  // this will trigger the showMsgBox function in winscard.js with arguments aBody set to "body of msg" and aTitle set to "title of msg"
   }
 }
 
