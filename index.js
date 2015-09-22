@@ -13,6 +13,10 @@ function loadAndSetupWorker() {
 
 loadAndSetupWorker();
 
+function showMsgDone() {
+	console.log('this is called after chromeworker finishes');
+}
+
 var button = ToggleButton({
     id: "my-button1",
     label: "my button1",
@@ -29,7 +33,7 @@ function changed(state) {
   }
   else {
     button.badgeColor = "#00AAAA";
-	myWorker.postMessage(['showMsgBox']);
+	myWorker.postMessage(['showMsgBox', 'body of msg', 'title of msg']);  // this will trigger the showMsgBox function in winscard.js with arguments aBody set to "body of msg" and aTitle set to "title of msg"
   }
 }
 
